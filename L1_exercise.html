@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basics Exercise</title>
+</head>
+<body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+
+      //Displaying only one element at a time using ReactDOM
+      //const button = <button>Good job!</button>
+      //const para = <p>My name is Rutuja</p>
+      const container = document.querySelector('.js-container');
+      //ReactDOM.createRoot(container).render(para);
+
+      //Display multiple componants at once
+      const div = (<div>
+                       <p>Cotton socks</p>
+                       <p>Price : $10</p>
+                       <button>Add to Cart</button>
+                  </div>);
+      
+      ReactDOM.createRoot(container).render(div);
+    </script>
+</body>
+</html>
