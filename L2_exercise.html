@@ -12,14 +12,227 @@
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
 
-      function App(){
-        return (<div>
+    /*Exercise 2d
+      function Loginform(){
+        return (
+          <div>
             <p>"Hello, welcome to my website" </p>
+            <div>
+              <input placeholder="Email" />
+            </div>
+            <div>
+              <input placeholder="password" type="password" />
+            </div>
             <button>Login</button>
             <button>Sign Up</button>
-        </div>
+          </div>
         );
       }
+      function App(){
+        return(
+            <>
+              <LoginForm />
+            </>
+        );
+      }
+      */
+      
+      /*Exercise 2e
+      function App(){
+        return(
+            <>
+              <p>Cotton socks</p>
+              <p>Price : $10.90</p>
+              <button>Add to Cart</button>
+            </>
+          );
+      }*/
+
+      /*Exercise 2f
+      function ProductDetails( {product, price} ){
+        return(
+          <>
+                <p>{product}</p>
+                <p>Price : ${price}</p>
+                <button>Add to Cart</button>
+          </>
+        )
+      }
+
+      function App(){
+        return (
+          <>
+            <ProductDetails 
+              product="tennis balls" 
+              price="6.00" 
+            />
+            <ProductDetails 
+              product="Socks" 
+              price="10.90" 
+            />
+            <ProductDetails 
+              product="Plain T-Shirt"
+              price="7.99" 
+            />
+          </>
+        )
+      }  */
+
+      /*Exercise 2g
+      function ProductDetails({product, price, discount}){
+        return(
+          <>
+            <p>{product}</p>
+            <p>Price : ${price}</p>
+            {discount && (
+              <p>Discount Price : {discount}</p>
+            )}
+            <button>Add to Cart</button>
+          </>
+        );
+      }
+
+      function App(){
+        return (
+          <>
+            <ProductDetails 
+              product="tennis balls" 
+              price="6.00" 
+            />
+            <ProductDetails 
+              product="Socks" 
+              price="10.90" 
+              discount="5.45"
+            />
+            <ProductDetails 
+              product="Plain T-Shirt"
+              price="7.99" 
+            />
+          </>
+        )
+      }*/
+
+
+      /*Exercise 2h
+      function ProductDetails({product, price, discount}){
+        return(
+          <>
+            <p>{product}</p>
+            {!discount && (
+              <p>Price: ${price}</p>
+            )}
+
+            {discount && (
+              <>
+              <p><del>Price: ${price}</del></p>
+              <p>Discount Price : {discount}</p>
+              </>
+            )}
+            <button>Add to Cart</button>
+          </>
+        );
+      }
+      function App(){
+        return (
+          <>
+            <ProductDetails 
+              product="tennis balls" 
+              price="6.00" 
+            />
+            <ProductDetails 
+              product="Socks" 
+              price="10.90" 
+              discount="5.45"
+            />
+            <ProductDetails 
+              product="Plain T-Shirt"
+              price="7.99" 
+            />
+          </>
+        )
+      }*/
+
+      /*Exercise 2i
+      function ProductDetails({product, price, discount}){
+        return(
+          <>
+            <p>{product}</p>
+      
+            {discount ? (
+              <>
+              <p><del>Price: ${price}</del></p>
+              <p>Discount Price : {discount}</p>
+              </>
+            ) : (
+              <p>Price: ${price}</p>
+            )}
+            <button>Add to Cart</button>
+          </>
+        );
+      }
+      function App(){
+        return (
+          <>
+            <ProductDetails 
+              product="tennis balls" 
+              price="6.00" 
+            />
+            <ProductDetails 
+              product="Socks" 
+              price="10.90" 
+              discount="5.45"
+            />
+            <ProductDetails 
+              product="Plain T-Shirt"
+              price="7.99" 
+            />
+          </>
+        );
+      }*/
+
+      //Exercise 2j
+      function ProductDetails({product, price, discount,imageSrc}){
+        return(
+          <div>
+            <img src={imageSrc} width="150"/>
+            <p>{product}</p>
+            {discount ? (
+              <>
+              <p><del>Price: ${price}</del></p>
+              <p>Discount Price : {discount}</p>
+              </>
+            ) : (
+              <p>Price: ${price}</p>
+            )}
+            <button>Add to Cart</button>
+          </div>
+        );
+      }
+      function App(){
+        return (
+          <>
+            <ProductDetails 
+              product="tennis balls" 
+              price="6.00"
+              imageSrc="tennis-balls.png"
+            />
+            <ProductDetails 
+              product="Socks" 
+              price="10.90" 
+              discount="5.45"
+              imageSrc="cotton-socks.png"
+            />
+            <ProductDetails 
+              product="Plain T-Shirt"
+              price="7.99" 
+              imageSrc="plain-t-shirt.png"
+            />
+          </>
+        );
+      }
+
+
+
     
       const container = document.querySelector('.js-container');
       ReactDOM.createRoot(container).render(<App />);
