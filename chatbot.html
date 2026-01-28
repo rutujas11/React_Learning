@@ -73,6 +73,16 @@
         scrollbar-width: none;
       }
 
+      .welcome-msg{
+        color: rgb(120, 120, 120);
+        text-align: center;
+      }
+
+      .loading-spinner{
+        height: 40px;
+        margin: -15px;
+      }
+
     </style>
   </head>
   <body>
@@ -94,12 +104,11 @@
         }
 
         async function sendMessage(){
-          if(isLoading || inputText === ''){
-            return;
-          }
-          const userMessage = inputText;
+          // Clear the textbox at the top now because the Chatbot
+          // will take some time to load the response. We want
+          // to clear the textbox immediately rather waiting
+          // for the Chatbot to finish loading.
 
-          setIsLoading(true);
           setInputText('');
           
           const newChatMessages = [
@@ -111,11 +120,11 @@
               }
           ]
 
-          setChatMessages(newChatMessages);
+          
           setChatMessages([
             ...newChatMessages,
             {
-              message: 'Loading...',
+              message: <img src ="loading-spinner.gif" className="loading-spinner" />,
               sender: 'robot',
               id: crypto.randomUUID()
             }
@@ -202,15 +211,25 @@
         );
       }
 
-      function ChatMessages({ chatMessages }){
-        const chatMessagesRef = React.useRef(null);
+      
+      // To use a function as a hook, the function name must
+      // start with "use".
+      function useAutoScroll(dependencies){
+      
+        const containerRef = React.useRef(null);
+
         React.useEffect(() => {
-          const containerElem = chatMessagesRef.current;
+          const containerElem = containerRef.current;
           if(containerElem){
             containerElem.scrollTop = containerElem.scrollHeight;
           }
-        }, [chatMessages]);
+        }, dependencies);
 
+        return containerRef;
+      }
+
+      function ChatMessages({ chatMessages }){
+        const chatMessagesRef = useAutoScroll([chatMessages]);
 
         return (
           <div className="chat-message-container"
@@ -229,23 +248,7 @@
       }
 
       function App(){ 
-          const [chatMessages, setChatMessages] = React.useState([{
-            message: "Hello chatbot",
-            sender: "user",
-            id: 'id1'
-          }, {
-            message: "Hello!How are you?",
-            sender: "robot",
-            id: 'id2'
-          }, {
-            message: "What is todays' date",
-            sender: "user",
-            id: 'id3'
-          }, {
-            message: "It's 2nd January 2026",
-            sender: "robot",
-            id: 'id4'
-          }]);
+          const [chatMessages, setChatMessages] = React.useState([]);
           //const chatMessages = array[0];
           //const setChatMessages = array[1];
           //shortcut for above 2 lines ( Array Destructuring) 
@@ -254,6 +257,11 @@
         return (
           
           <div className="app-container">
+            {chatMessages.length === 0 && (
+              <p className="welcome-msg">
+                Welcome to the chatbot project! Send a message using the textbox below.
+              </p>
+            )}
             
             <ChatMessages
               chatMessages={chatMessages}
