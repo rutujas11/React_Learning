@@ -6,3 +6,10 @@
   display: flex;
   flex-direction: column;
 }
+
+.welcome-msg {
+  margin-top: 30px;   /* 👈 push it down */
+  margin-bottom: 20px;
+  text-align: center;
+  color: #777;
+}

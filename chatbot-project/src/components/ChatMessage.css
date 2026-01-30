@@ -17,8 +17,27 @@
   margin-left: 10px;
   margin-bottom: 20px;
   max-width: 300px;
+  display: flex;
+  flex-direction: column;
 }
+
+.chat-message-user .chat-message-time {
+  align-self: flex-end;
+}
+
+.chat-message-robot .chat-message-time {
+  align-self: flex-start;
+}
+
 
 .chat-message-profile {
   width: 45px;
+  height: 45px;
+  border-radius: 45px;
+}
+
+.chat-message-time{
+  font-size: 14px;
+  color: rgb(125, 125, 125);
+  margin-top: 5px;
 }

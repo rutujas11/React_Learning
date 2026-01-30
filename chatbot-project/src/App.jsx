@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { Chatbot } from 'supersimpledev';
 import { ChatInput } from './components/ChatInput';
 import ChatMessages from './components/ChatMessages';
 import './App.css'
@@ -10,7 +11,18 @@ function App(){
           //shortcut for above 2 lines ( Array Destructuring) 
           //const [chatMessages, setChatMessages] = array;
           //we can also directly replace const array by const [chatMessages, setChatMessages] in the first place only
-        return (
+          
+          useEffect(() => {
+            Chatbot.addResponses({
+              'goodbye': "Goodbye. Have a great day!",
+               'give me a unique id': function(){
+                return `Sure! Here's a unique ID: ${crypto.randomUUID}`; 
+               }
+            });
+          }, []);
+
+
+          return (
           
           <div className="app-container">
             {chatMessages.length === 0 && (
